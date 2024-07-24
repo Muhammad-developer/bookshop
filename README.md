@@ -11,11 +11,11 @@ project/
 | |-- index.php
 | |-- install.php
 | |-- classes/
-| |-- Database.php
-| |-- Book.php
-| |-- Category.php
-| |-- Author.php
-| |-- Report.php
+| | |-- Database.php
+| | |-- Book.php
+| | |-- Category.php
+| | |-- Author.php
+| | |-- Report.php
 |-- Dockerfile
 |-- README.md
 ```
