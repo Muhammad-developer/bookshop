@@ -1,22 +1,11 @@
 <?php
-// Подключение к базе данных
-$mysqli = new mysqli("localhost", "root", "", "bookshop");
+require 'classes/Database.php';
+require 'classes/Book.php';
+require 'classes/Category.php';
+require 'classes/Author.php';
+require 'classes/Report.php';
 
-if ($mysqli->connect_error) {
-    die("Ошибка подключения: " . $mysqli->connect_error);
-}
-
-// Получение данных из базы
-$query = "SELECT categories.name as category_name, COUNT(books.id) as book_count, SUM(books.price) as total_price
-          FROM categories
-          LEFT JOIN books ON categories.id = books.category_id
-          GROUP BY categories.id";
-$result = $mysqli->query($query);
-
-$categories = [];
-while ($row = $result->fetch_assoc()) {
-    $categories[] = $row;
-}
+$categories = Report::generateReport();
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,10 +19,9 @@ while ($row = $result->fetch_assoc()) {
         <h3><?php echo $category['category_name']; ?> (<?php echo $category['book_count']; ?> книг, <?php echo $category['total_price']; ?> руб.)</h3>
         <div>
             <?php
-            $books_query = "SELECT * FROM books WHERE category_id = " . $category['category_id'];
-            $books_result = $mysqli->query($books_query);
-            while ($book = $books_result->fetch_assoc()) {
-                echo "<p>" . $book['name'] . " - " . $book['price'] . " руб.</p>";
+            $books = Book::getBooksByCategoryId($category['category_id']);
+            foreach ($books as $book) {
+                echo "<p>" . $book->getName() . " - " . $book->getPrice() . " руб.</p>";
             }
             ?>
         </div>

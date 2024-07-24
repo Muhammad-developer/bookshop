@@ -4,14 +4,20 @@
 
 ## Структура проекта
 ```
-    project/
-    |-- apache-config/
-    | |-- bookshop.conf
-    |-- src/
-    | |-- index.php
-    | |-- install.php
-    |-- Dockerfile
-    |-- README.md
+project/
+|-- apache-config/
+| |-- bookshop.conf
+|-- src/
+| |-- index.php
+| |-- install.php
+| |-- classes/
+| |-- Database.php
+| |-- Book.php
+| |-- Category.php
+| |-- Author.php
+| |-- Report.php
+|-- Dockerfile
+|-- README.md
 ```
 
 ## Требования
@@ -24,7 +30,7 @@
 1. Склонируйте репозиторий:
 
     ```sh
-    git clone <URL вашего репозитория>
+    git clone https://github.com/Muhammad-developer/bookshop.git
     cd project
     ```
 
@@ -50,6 +56,11 @@
 - `apache-config/bookshop.conf`: Конфигурационный файл для виртуального хоста Apache.
 - `src/index.php`: Главная страница проекта, отображающая отчет по книгам.
 - `src/install.php`: Скрипт для создания структуры базы данных и загрузки тестовых данных.
+- `src/classes/Database.php`: Класс для управления соединением с базой данных.
+- `src/classes/Book.php`: Класс для управления книгами.
+- `src/classes/Category.php`: Класс для управления категориями.
+- `src/classes/Author.php`: Класс для управления авторами.
+- `src/classes/Report.php`: Класс для генерации отчетов.
 
 ## Вход в контейнер через SSH
 
@@ -65,8 +76,8 @@ ssh admin@localhost -p 2222
 ```
 
 ## Примечания
-Проект следует принципам SOLID для обеспечения качественной архитектуры.
-База данных нормализована для обеспечения целостности данных.
+- Проект следует принципам SOLID для обеспечения качественной архитектуры.
+- База данных нормализована для обеспечения целостности данных.
 
 ## Контакты
 Если у вас возникли вопросы или предложения, пожалуйста, свяжитесь с нами по электронной почте: [muhammadjonvafoev@gmail.com](mailto:muhammadjonvafoev@gmail.com).
